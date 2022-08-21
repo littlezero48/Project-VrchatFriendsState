@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+        <table style="border: 0px solid; width: 100%">
+        <tr>
+            <td style=><h2>Login</h2></td>
+            <td style=><button class="btn btn" onclick="location.href='../'" style="float:right">홈으로</button></td>
+        </tr>
+    </table>
+    {% if vrchatLoginTest != None %}
+    <p>Vrchat 아이디로 로그인되어 있습니다</p>
+    {% else %}
+     <p>Vrchat 아이디로 로그인하세요</p>
+    {% endif %}
+
+    {% if loginState == 'failed' %}
+    <div class="alert alert-danger">
+        <strong>Failed!</strong> 로그인에 실패하였습니다.
+    </div>
+    {% endif %}
+
+    {% if vrchatLoginTest != None %}
+      <form>
+        <button type="button" class="btn btn-primary" style="width:100%">Logout</button>
+      </form>
+        <button type="button" class="btn">BACK</button>
+    {% else %}
+    <div class="container my-3">
+        <form method="post" >
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="username">사용자ID</label>
+            <input type="text" class="form-control" name="username" id="username"
+                   value="{{ form.username.value|default_if_none:'' }}">
+        </div>
+        <div class="mb-3" style="margin-bottom:10px">
+            <label for="password">비밀번호</label>
+            <input type="password" class="form-control" name="password" id="password"
+                              value="{{ form.password.value|default_if_none:'' }}">
+<!--                                      value="pythontest123!">-->
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%">로그인</button>
+        </form>
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>
