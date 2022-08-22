@@ -16,7 +16,8 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-secret_file = os.path.join(BASE_DIR, 'secret.json')
+SECRET_DIR = Path(__file__).resolve().parent
+secret_file = os.path.join(SECRET_DIR, 'secret.json')
 
 
 # Secret Key
